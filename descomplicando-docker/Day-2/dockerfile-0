@@ -1,0 +1,8 @@
+#FROM : É de qual imagem que eu quero partir
+FROM ubuntu:18.04    
+#RUN : Quando eu preciso instalar alguma coisa no meu container eu uso o RUN     
+RUN  apt-get update && apt-get install -y nginx
+#EXPOSE : É a porta que eu quero expor"  
+EXPOSE 80               
+#CMD : É o comando que eu quero executar na execução do container
+CMD ["nginx", "-g", "daemon off;"] 

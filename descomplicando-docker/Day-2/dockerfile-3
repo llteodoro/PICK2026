@@ -1,0 +1,22 @@
+#FROM : É de qual imagem que eu quero partir
+FROM ubuntu:18.04    
+#LABEL : É para definir metadados do container
+LABEL maintainer="lucasluisto@gmai.com" 
+#RUN : Quando eu preciso instalar alguma coisa no meu container eu uso o RUN     
+RUN  apt-get update && apt-get install -y nginx curl && rm -rf /var/lib/apt/lists/*
+#EXPOSE : É a porta que eu quero expor"  
+EXPOSE 80 
+# ADD : Faz o mesmo que o COPY, mas tem "poderes extras": consegue baixar arquivos de URLs externas e descompactar arquivos (.tar) locais automaticamente no destino. (Use apenas quando precisar dessas funções).
+ADD index.html /var/www/html/index.html
+#COPY : É para copiar arquivos do host para o container
+COPY index.html /var/www/html/index.html
+#WORKDIR : É para definir o diretório de trabalho
+WORKDIR /var/www/html 
+#ENV : É para definir variáveis de ambiente
+ENV APP_VERSION=4.0.0
+#ENTRYPOINT : É para definir o comando que vai ser executado na execução do container
+ENTRYPOINT ["nginx"]
+#CMD : É o comando que eu quero executar na execução do container
+CMD ["-g", "daemon off;"] 
+#HEALTHCHECK : É para definir o comando que vai ser executado para verificar se o container está funcionando
+HEALTHCHECK --interval=30s --timeout=3s CMD curl -f http://localhost/ || exit 1

@@ -1,0 +1,4 @@
+Docker é mais simples do que parece, mas tem seus segredos e o maior segredo é o isolamento.  
+
+Deixa eu te explicar o porque , no mundo de docker nós estamos falando do mundo linux, e no mundo linux existe uma coisa chamada cgroups, que é o que faz o isolamento. Então vamos entender sobre cgroups.
+
